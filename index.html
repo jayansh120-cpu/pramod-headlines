@@ -1,0 +1,18 @@
+{% extends "base.html" %}{% block title %}Pramod Headlines | हिंदी समाचार{% endblock %}
+{% block content %}
+<div class="hero p-4 p-md-5 mb-4 rounded-4">
+ <span class="eyebrow">विश्वसनीय हिंदी न्यूज़ पोर्टल</span>
+ <h1 class="display-5 fw-bold mt-2">Pramod Headlines</h1>
+ <p class="lead mb-0">गाज़ीपुर और देश की हर बड़ी खबर, सबसे पहले।</p>
+</div>
+<form class="row g-2 mb-4" method="get"><div class="col"><input class="form-control form-control-lg" name="q" value="{{ q }}" placeholder="खबर खोजें..."></div><div class="col-auto"><button class="btn btn-danger btn-lg">खोजें</button></div></form>
+<div class="d-flex justify-content-between align-items-center mb-3"><h2 class="section-title">ताज़ा समाचार</h2><span class="text-secondary">{{ news|length }} खबरें</span></div>
+{% if news %}<div class="row g-4">{% for item in news %}
+<div class="col-md-6 col-lg-4"><article class="card news-card h-100">
+ {% if item.image %}<img src="{{ url_for('static', filename='uploads/' + item.image) }}" class="card-img-top news-thumb" alt="समाचार चित्र">{% endif %}
+ <div class="card-body d-flex flex-column"><span class="category">{{ item.category }}</span><h3 class="h5 mt-2">{{ item.title }}</h3>
+ <p class="text-secondary">{{ item.summary or item.body[:135] }}{% if not item.summary and item.body|length > 135 %}…{% endif %}</p>
+ <div class="mt-auto d-flex justify-content-between align-items-center"><small class="text-secondary">{{ item.created_at }}</small><a class="btn btn-outline-danger btn-sm" href="{{ url_for('article', news_id=item.id) }}">पूरी खबर पढ़ें</a></div>
+ </div></article></div>{% endfor %}</div>
+{% else %}<div class="empty-state text-center p-5"><h3>अभी कोई खबर प्रकाशित नहीं है</h3><p class="text-secondary">जल्द ही यहां ताज़ा समाचार दिखाई देंगे।</p></div>{% endif %}
+{% endblock %}

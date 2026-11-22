@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}नई खबर | Pramod Headlines{% endblock %}
+{% block content %}<div class="form-card mx-auto"><h1 class="h3 fw-bold mb-4">नई खबर प्रकाशित करें</h1>
+<form method="post" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+<label class="form-label">खबर का शीर्षक *</label><input class="form-control mb-3" name="title" required>
+<label class="form-label">श्रेणी</label><select class="form-select mb-3" name="category"><option>गाज़ीपुर</option><option>उत्तर प्रदेश</option><option>देश</option><option>दुनिया</option><option>खेल</option><option>मनोरंजन</option><option>शिक्षा</option><option>मुख्य समाचार</option></select>
+<label class="form-label">संक्षिप्त विवरण</label><textarea class="form-control mb-3" name="summary" rows="2"></textarea>
+<label class="form-label">पूरी खबर *</label><textarea class="form-control mb-3" name="body" rows="9" required></textarea>
+<label class="form-label">समाचार फोटो (JPG/PNG/WEBP, अधिकतम 5 MB)</label><input class="form-control mb-4" type="file" name="image" accept=".jpg,.jpeg,.png,.webp">
+<button class="btn btn-danger btn-lg">खबर प्रकाशित करें</button> <a class="btn btn-light btn-lg" href="{{ url_for('dashboard') }}">रद्द करें</a></form></div>{% endblock %}

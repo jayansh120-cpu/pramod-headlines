@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}एडमिन लॉगिन{% endblock %}
+{% block content %}<div class="auth-card mx-auto"><h1 class="h3 fw-bold">एडमिन लॉगिन</h1><p class="text-secondary">केवल अधिकृत एडमिन ही समाचार प्रकाशित कर सकता है।</p>
+<form method="post"><label class="form-label">रजिस्टर्ड मोबाइल नंबर</label><input class="form-control form-control-lg mb-3" name="phone" type="tel" placeholder="+919454102368" required><button class="btn btn-danger btn-lg w-100">SMS OTP भेजें</button></form>
+<small class="text-secondary d-block mt-3">पब्लिक यूज़र्स के लिए साइन-अप उपलब्ध नहीं है।</small></div>{% endblock %}

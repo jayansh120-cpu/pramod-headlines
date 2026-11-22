@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block title %}{{ item.title }} | Pramod Headlines{% endblock %}
+{% block content %}
+<a href="{{ url_for('index') }}" class="text-danger text-decoration-none">← सभी खबरें</a>
+<article class="article-wrap mx-auto mt-3">
+ <span class="category">{{ item.category }}</span><h1 class="display-6 fw-bold mt-2">{{ item.title }}</h1>
+ <p class="text-secondary">{{ item.created_at }} | Pramod Headlines</p>
+ {% if item.image %}<img class="img-fluid rounded-4 article-image mb-4" src="{{ url_for('static', filename='uploads/' + item.image) }}" alt="समाचार चित्र">{% endif %}
+ {% if item.summary %}<p class="lead fw-semibold">{{ item.summary }}</p>{% endif %}
+ <div class="article-body">{{ item.body }}</div>
+ <hr><div class="d-flex flex-wrap gap-2"><a class="btn btn-success" target="_blank" href="https://wa.me/?text={{ (item.title ~ ' ' ~ request.url)|urlencode }}">WhatsApp पर शेयर करें</a>
+ <button class="btn btn-outline-secondary" onclick="navigator.clipboard.writeText(location.href).then(()=>this.innerText='लिंक कॉपी हो गया')">लिंक कॉपी करें</button></div>
+</article>{% endblock %}
